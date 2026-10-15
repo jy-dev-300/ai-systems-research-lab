@@ -1,0 +1,7 @@
+[
+  {
+    "id": "harness-echo-001",
+    "prompt": "Return the expected deterministic smoke-test answer.",
+    "expected_answer": "harness smoke passed"
+  }
+]

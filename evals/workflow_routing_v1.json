@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "protected": true,
+  "cases": [
+    {"id": "build-dense", "project": "Bo", "program": "Implement dense retrieval in Bo.", "gold": "BUILD"},
+    {"id": "build-parser", "project": "Bo", "program": "Fix the broken document parser and run its regression tests.", "gold": "BUILD"},
+    {"id": "build-eval", "project": "MyVoice", "program": "Add prompt personalization and evaluate it against the fixed acceptance suite before reporting success.", "gold": "BUILD"},
+    {"id": "build-harness", "project": "Harness", "program": "Implement bounded parallel tool execution in the simple loop.", "gold": "BUILD"},
+    {"id": "eval-retrieval", "project": "Bo", "program": "Benchmark BM25 against hybrid retrieval. Do not modify either implementation.", "gold": "EVAL"},
+    {"id": "eval-latency", "project": "Bo", "program": "Measure current reranker p50 and p95 latency on the fixed query set.", "gold": "EVAL"},
+    {"id": "eval-swe", "project": "SWE-bench", "program": "Compare simple_loop and planner_executor on the same ten tasks without changing them.", "gold": "EVAL"},
+    {"id": "eval-physical", "project": "ManiSkill", "program": "Evaluate the current controller for 20 episodes and report success and reward only.", "gold": "EVAL"},
+    {"id": "research-quality", "project": "Bo", "program": "Find a way to improve nDCG without increasing p95 latency more than 20%.", "gold": "RESEARCH"},
+    {"id": "research-expansion", "project": "Bo", "program": "Investigate whether query expansion improves vague-memory search.", "gold": "RESEARCH"},
+    {"id": "research-build", "project": "Bo", "program": "Investigate whether late interaction is worth adding; build a candidate if evidence supports a controlled test.", "gold": "RESEARCH"},
+    {"id": "research-harness", "project": "Harness", "program": "Determine whether ObservationPack can reduce token usage without reducing task success.", "gold": "RESEARCH"},
+    {"id": "research-myvoice", "project": "MyVoice", "program": "Find a personalization strategy that improves held-out style similarity without a latency regression.", "gold": "RESEARCH"},
+    {"id": "research-maniskill", "project": "ManiSkill", "program": "Investigate whether replanning after failed grasps improves success; implement the treatment needed for the experiment.", "gold": "RESEARCH"}
+  ]
+}

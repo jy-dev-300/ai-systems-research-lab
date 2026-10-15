@@ -1,0 +1,14 @@
+config_version: "1.0"
+experiment: {name: myvoice_retrieval_personalization, domain: MyVoice}
+harness: {type: simple_loop, max_steps: 4}
+model: {provider: mock, name: deterministic-mock, backend: deterministic}
+adapter:
+  name: myvoice
+  parameters: {repo: ../myvoice}
+parameters:
+  personalization: {strategy: retrieval_personalization}
+evaluation:
+  dataset: evals/myvoice_heldout_v1.json
+  parameters: {acceptance_threshold: 0.40}
+tracking: {type: local, uri: ./mlruns, experiment: MyVoice}
+seed: 7

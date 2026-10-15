@@ -1,0 +1,12 @@
+[
+  {
+    "instance_id": "local__calculator-001",
+    "problem_statement": "Fix add() so two integers are summed and the regression test passes.",
+    "candidate_patch": "diff --git a/calculator.py b/calculator.py\n-    return left - right\n+    return left + right",
+    "test_log": "1 passed in 0.01s",
+    "resolved": true,
+    "tests_passed": 1,
+    "tests_failed": 0,
+    "files_modified": 1
+  }
+]

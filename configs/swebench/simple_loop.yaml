@@ -1,0 +1,24 @@
+config_version: "1.0"
+experiment:
+  name: swebench_smoke_simple_loop
+  domain: SWE-bench
+harness:
+  type: simple_loop
+  max_steps: 4
+model:
+  provider: mock
+  name: deterministic-mock
+  backend: deterministic
+adapter:
+  name: swebench
+  parameters:
+    mode: smoke
+    repo: ../swe-bench
+    limit: 10
+evaluation:
+  dataset: evals/swebench_smoke_v1.json
+tracking:
+  type: local
+  uri: ./mlruns
+  experiment: SWE-bench
+seed: 7

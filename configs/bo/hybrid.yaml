@@ -1,0 +1,12 @@
+config_version: "1.0"
+experiment: {name: bo_hybrid_rrf, domain: Bo}
+harness: {type: simple_loop, max_steps: 4}
+model: {provider: mock, name: deterministic-mock, backend: deterministic}
+adapter:
+  name: bo
+  parameters: {repo: ../natural-language-file-search-rag, corpus: sample_corpus/chunks.jsonl}
+parameters:
+  retrieval: {stage: hybrid, top_k: 20}
+evaluation: {dataset: ../natural-language-file-search-rag/sample_corpus/retrieval_gold.jsonl}
+tracking: {type: local, uri: ./mlruns, experiment: Bo}
+seed: 7

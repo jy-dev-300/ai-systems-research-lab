@@ -1,0 +1,39 @@
+[
+  {
+    "id": "rrf-2009",
+    "title": "Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods",
+    "authors": ["Gordon V. Cormack", "Charles L. A. Clarke", "Stefan Buettcher"],
+    "publication_date": "2009-01-01",
+    "venue": "SIGIR",
+    "abstract": "Rank fusion combines independently produced rankings using reciprocal ranks.",
+    "url": "https://doi.org/10.1145/1571941.1572114",
+    "tags": ["retrieval", "rank fusion", "rrf", "recall"],
+    "provenance": "curated local metadata fixture",
+    "evidence_type": "paper"
+  },
+  {
+    "id": "vllm-2023",
+    "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
+    "authors": ["Woosuk Kwon et al."],
+    "publication_date": "2023-01-01",
+    "venue": "SOSP",
+    "abstract": "PagedAttention and continuous batching improve serving throughput and memory use.",
+    "url": "https://arxiv.org/abs/2309.06180",
+    "implementation_url": "https://github.com/vllm-project/vllm",
+    "tags": ["inference", "batching", "prefix cache", "latency"],
+    "provenance": "curated local metadata fixture",
+    "evidence_type": "paper"
+  },
+  {
+    "id": "react-2022",
+    "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+    "authors": ["Shunyu Yao et al."],
+    "publication_date": "2022-01-01",
+    "venue": "arXiv",
+    "abstract": "Interleaved reasoning and environment feedback can support updated action selection.",
+    "url": "https://arxiv.org/abs/2210.03629",
+    "tags": ["agents", "planning", "replanning", "environment feedback"],
+    "provenance": "curated local metadata fixture",
+    "evidence_type": "paper"
+  }
+]

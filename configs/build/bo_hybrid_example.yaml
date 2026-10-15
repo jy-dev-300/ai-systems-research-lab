@@ -1,0 +1,48 @@
+version: "1.0"
+target_project: ../natural-language-file-search-rag
+adapter_name: bo
+goal: Add configurable hybrid retrieval using BM25, BGE dense retrieval, and RRF.
+requirements:
+  - Preserve the BM25 baseline.
+  - Combine lexical and dense rankings with RRF.
+  - Record retrieval latency and ranking metrics.
+constraints:
+  - Do not change the held-out retrieval gold set.
+  - Do not overwrite unrelated working-tree changes.
+acceptance_criteria:
+  - id: tests
+    description: Existing Bo tests pass.
+    kind: tests_pass
+  - id: hybrid_eval
+    description: The hybrid retrieval evaluation completes successfully.
+    kind: experiment_success
+  - id: recall_floor
+    description: Mean Recall@k is at least 0.80.
+    kind: metric
+    metric_name: domain.recall_at_k
+    operator: ">="
+    threshold: 0.80
+  - id: implementation_changed
+    description: The approved implementation produces a reviewable diff.
+    kind: diff_nonempty
+relevant_files:
+  - retrieval/hybrid.py
+  - retrieval/stages.py
+  - evaluation/compare_retrieval.py
+allowed_actions: [inspect, edit, test, evaluate]
+max_iterations: 3
+max_tokens: 50000
+max_cost_usd: 10.0
+validation_commands:
+  - name: bo_tests
+    command: [py, -m, pytest, -q]
+    timeout_seconds: 600
+validation_config_paths:
+  - configs/bo/hybrid.yaml
+approval_state: proposed
+metadata:
+  scripted_plan_steps:
+    - Inspect the existing BM25, dense retrieval, RRF, and evaluation paths.
+    - Propose the smallest configurable integration.
+    - Run Bo tests and the fixed hybrid evaluation.
+  scripted_proposals: []

@@ -1,0 +1,10 @@
+config_version: "1.0"
+experiment: {name: harness_baseline_smoke, domain: Harness}
+harness: {type: simple_loop, max_steps: 4}
+model: {provider: mock, name: deterministic-mock, backend: deterministic}
+adapter:
+  name: harness
+  parameters: {repo: .}
+evaluation: {dataset: evals/harness_smoke_v1.json}
+tracking: {type: local, uri: ./mlruns, experiment: Harness}
+seed: 7

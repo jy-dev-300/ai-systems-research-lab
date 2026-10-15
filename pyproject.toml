@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-systems-research-lab"
+version = "0.1.0"
+description = "Cross-system platform for reproducible AI research, evaluation, and build loops"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "httpx>=0.27,<1",
+  "psycopg[binary]>=3.2,<4",
+  "pydantic>=2.9,<3",
+  "PyYAML>=6.0,<7",
+  "sqlalchemy>=2.0,<3",
+  "uvicorn[standard]>=0.30,<1",
+]
+
+[project.optional-dependencies]
+tracking = ["mlflow>=2.17,<4"]
+research = ["scikit-learn>=1.5,<2"]
+maniskill = ["mani-skill>=3,<4"]
+jev = ["typesafe-sdk>=0.7.4,<1"]
+all = ["mlflow>=2.17,<4", "scikit-learn>=1.5,<2", "mani-skill>=3,<4", "typesafe-sdk>=0.7.4,<1"]
+
+dev = [
+  "pytest>=8.3,<9",
+  "pytest-asyncio>=0.24,<1",
+  "ruff>=0.7,<1",
+]
+
+[project.scripts]
+lab = "harness.programs.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["backend", "harness", "harnesses", "tools", "benchmarks", "tracing", "serving", "profiling", "optimization", "evaluation"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+  "student: specification tests for student-owned implementations",
+  "hardware: requires a real inference server and usually an NVIDIA GPU",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

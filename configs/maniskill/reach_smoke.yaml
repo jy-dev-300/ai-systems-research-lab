@@ -1,0 +1,10 @@
+config_version: "1.0"
+experiment: {name: maniskill_reach_smoke, domain: Physical-AI}
+harness: {type: planner_executor, max_steps: 4}
+model: {provider: mock, name: deterministic-mock, backend: deterministic}
+adapter:
+  name: maniskill
+  parameters: {mode: smoke, repo: ../ManiSkill, environment_id: PickCube-v1}
+evaluation: {dataset: evals/maniskill_smoke_v1.json}
+tracking: {type: local, uri: ./mlruns, experiment: Physical-AI}
+seed: 7

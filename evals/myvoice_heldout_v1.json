@@ -1,0 +1,14 @@
+[
+  {
+    "id": "email-followup-001",
+    "prompt": "I reviewed the proposal and",
+    "reference": "I think the smaller first pass is the right move.",
+    "profile_examples": [
+      "I think the narrow version is the right move.",
+      "Let's keep the first pass small and concrete.",
+      "I can take a look tomorrow morning."
+    ],
+    "split": "test",
+    "dataset_version": "1.0"
+  }
+]

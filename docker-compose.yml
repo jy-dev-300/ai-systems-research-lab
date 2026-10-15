@@ -1,0 +1,59 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: optimo
+      POSTGRES_USER: optimo
+      POSTGRES_PASSWORD: optimo
+    ports:
+      - "5432:5432"
+    volumes:
+      - optimo-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U optimo"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg://optimo:optimo@postgres:5432/optimo
+      MLFLOW_UI_URL: http://localhost:5000
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./.harness:/app/.harness:ro
+      - ./mlruns:/app/mlruns
+      - ../natural-language-file-search-rag:/bo:ro
+      - ../myvoice:/myvoice:ro
+      - ../SWE-bench:/swe-bench:ro
+      - ../ManiSkill:/ManiSkill:ro
+
+  mlflow:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    command: ["mlflow", "ui", "--backend-store-uri", "/app/mlruns", "--host", "0.0.0.0", "--port", "5000"]
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/app/mlruns
+
+  frontend:
+    build: ./frontend
+    environment:
+      VITE_API_URL: http://localhost:8000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+      - mlflow
+
+volumes:
+  optimo-postgres:
